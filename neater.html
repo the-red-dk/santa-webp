@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secret Santa Generator</title>
+    <!-- <link rel="icon" href="images/Link3.png"> -->
+    <link rel="icon" href="images/Link2.png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="main">
+        <div class="one">
+            <h1>Secret Santa Generator</h1><br>
+            <div id="nameInputs">
+                <input type="text" class="name" placeholder="Enter Player name: "><br>
+                <input type="text" class="name" placeholder="Enter Player name"><br>
+            </div>
+        </div>
+
+            <button style="margin-bottom: 20px;" class="add" onclick="addNameInput()">+ Add Name</button>
+            <input type="text" id="moneyLimit" placeholder="Enter Gift Limit (e.g., ₹200)" /><br>
+        
+        <div class="two">
+            <button class=sub onclick="generateSecretSanta()">Generate</button>
+            <div id="result" style="margin-top: 8px;"></div>
+        </div>
+    </div>            
+    
+    <script>
+        function addNameInput() {
+            const nameInputs = document.getElementById('nameInputs');
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.classList.add('name');
+            input.placeholder = 'Enter Player name: ';
+            const br = document.createElement('br');
+            nameInputs.appendChild(br);
+            nameInputs.appendChild(input);
+        }
+
+        function generateSecretSanta() {
+            const nameInputs = document.querySelectorAll('.name');
+            const names = Array.from(nameInputs)
+                .map(input => input.value.trim())
+                .filter(name => name);
+            const moneyLimit = document.getElementById('moneyLimit').value;
+
+            if (names.length < 2) {
+                alert('Enter at least two names!');
+                return;
+            }
+
+            const shuffled = names.slice();
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+
+            const pairs = names.map((name, i) => `${name} → ${shuffled[i]}`);
+            document.getElementById('result').innerHTML = `
+                ${pairs.join('<br>')}<br><br>
+                <strong>Gift Limit:</strong> ${moneyLimit}
+            `;
+        }
+    </script>
+</body>
+</html>
