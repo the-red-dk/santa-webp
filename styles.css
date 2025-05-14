@@ -3,6 +3,7 @@
     margin: 0;
     padding: 0;
     font-family: Gotham;
+    cursor: url("images/candy.svg"), auto;
 }
 
 body {
@@ -54,7 +55,7 @@ input {
 
 input::placeholder {
     opacity: 0.3;
-    color:#32eaf3;
+    color:#000;
 }
 input:focus {
     font-weight: bold;
