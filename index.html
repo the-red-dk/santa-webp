@@ -12,12 +12,12 @@
         <div class="one">
             <h1>Secret Santa Generator</h1><br>
             <div id="nameInputs">
-                <input type="text" class="name" placeholder="Enter Player name: "><br>
+                <input type="text" class="name" autofocus placeholder="Enter Player name: "><br>
                 <input type="text" class="name" placeholder="Enter Player name"><br>
             </div>
         </div>
 
-            <button style="margin-bottom: 20px;" class="add" onclick="addNameInput()">+ Add Name</button>
+            <button style="margin-bottom: 20px;" class="add" onclick="addName()">+ Add Name</button>
             <input type="text" id="moneyLimit" placeholder="Enter Gift Limit(ex: ₹200)" /><br>
         
         <div class="two">
@@ -27,7 +27,7 @@
     </div>            
     
     <script>
-        function addNameInput() {
+        function addName() {
             const nameInputs = document.getElementById('nameInputs');
             const input = document.createElement('input');
             input.type = 'text';
