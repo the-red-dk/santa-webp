@@ -9,6 +9,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Borel&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    
 </head>
 <body>
     <div class="main">
@@ -29,42 +33,6 @@
         </div>
     </div>            
     
-    <script>
-        function addName() {
-            const nameInputs = document.getElementById('nameInputs');
-            const input = document.createElement('input');
-            input.type = 'text';
-            input.classList.add('name');
-            input.placeholder = 'Enter Player name: ';
-            const br = document.createElement('br');
-            nameInputs.appendChild(br);
-            nameInputs.appendChild(input);
-        }
-
-        function generateSecretSanta() {
-            const nameInputs = document.querySelectorAll('.name');
-            const names = Array.from(nameInputs)
-                .map(input => input.value.trim())
-                .filter(name => name);
-            const moneyLimit = document.getElementById('moneyLimit').value;
-
-            if (names.length < 2) {
-                alert('Enter at least two names!');
-                return;
-            }
-
-            const shuffled = names.slice();
-            for (let i = shuffled.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-            }
-
-            const pairs = names.map((name, i) => `${name} → ${shuffled[i]}`);
-            document.getElementById('result').innerHTML = `
-                ${pairs.join('<br>')}<br><br>
-                <strong>Gift Limit:</strong> ${moneyLimit}
-            `;
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
