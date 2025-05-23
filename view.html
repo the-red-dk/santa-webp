@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Secret Santa Assignment</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Borel&family=Montserrat:wght@500&display=swap" rel="stylesheet">
+  <style>
+    body { background: #0a2a43; color: #fff; font-family: 'Montserrat', Arial, sans-serif; min-height: 100vh; margin: 0; }
+    .container { max-width: 420px; margin: 60px auto; background: rgba(255,255,255,0.08); border-radius: 16px; padding: 36px 20px 28px 20px; box-shadow: 0 6px 32px #0003; text-align: center; }
+    h1 { font-family: 'Borel', cursive; color: #fff; margin-bottom: 18px; }
+    .assignment { font-size: 1.25em; margin: 24px 0 10px 0; }
+    .name { color: #32eaf3; font-weight: bold; }
+    .santa { color: #ff2d2d; font-weight: bold; }
+    .limit { margin-top: 18px; color: #bcd; }
+    .back { margin-top: 30px; display: inline-block; color: #32eaf3; text-decoration: underline; cursor: pointer; }
+    @media (max-width: 500px) { .container { padding: 12px 2vw; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎁 Your Secret Santa 🎅</h1>
+    <div class="assignment" id="assignment"></div>
+    <div class="limit" id="limit"></div>
+    <div class="back" onclick="window.location='index.html'">← Back to Setup</div>
+  </div>
+  <script>
+    function decode(str) {
+      try {
+        return decodeURIComponent(escape(atob(str)));
+      } catch {
+        return '';
+      }
+    }
+    const params = new URLSearchParams(window.location.search);
+    const name = params.get('name');
+    const code = params.get('code');
+    const limit = params.get('limit');
+    const assigned = code ? decode(code) : '';
+    if (name && assigned) {
+      document.getElementById('assignment').innerHTML =
+        `Hello <span class="name">${name}</span>, you are the Secret Santa for: <span class="santa">${assigned}</span>`;
+    } else {
+      document.getElementById('assignment').innerHTML =
+        `<span style="color:#ff2d2d;">Invalid or missing assignment link.</span>`;
+    }
+    if (limit) {
+      document.getElementById('limit').textContent = `Gift price limit: ${limit}`;
+    }
+  </script>
+</body>
+</html>

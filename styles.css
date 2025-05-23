@@ -90,3 +90,7 @@ input:focus {
     width: 100%; 
     text-align: center;
 }
+
+#result a {
+    cursor: pointer;
+}

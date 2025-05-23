@@ -54,7 +54,13 @@ function generateSecretSanta() {
     // Output in a clear, readable format
     let output = `<strong>Secret Santa Assignments:</strong><ul style="margin:8px 0 0 16px;">`;
     names.forEach((name, i) => {
-        output += `<li><b>${name}</b> ➔ <span style="color:#0ff;font-weight:bold">${shuffled[i]}</span></li>`;
+        // Encode assigned name in base64 for the link
+        const assigned = shuffled[i];
+        const code = btoa(unescape(encodeURIComponent(assigned)));
+        const limitParam = encodeURIComponent(moneyLimit);
+        const nameParam = encodeURIComponent(name);
+        output += `<li><b>${name}</b> ➔ <span style="color:#0ff;font-weight:bold">${assigned}</span>
+        <br><a href="view.html?name=${nameParam}&code=${code}&limit=${limitParam}" target="_blank" style="color:#32eaf3;">View your assignment</a></li>`;
     });
     output += `</ul><div style="margin-top:8px;"><strong>Gift Limit:</strong> ${moneyLimit}</div>`;
     document.getElementById('result').innerHTML = output;
