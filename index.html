@@ -16,21 +16,26 @@
 </head>
 <body>
     <div class="main">
-        <div class="one">
-            <h1>Secret Santa Generator</h1><br>
-            <div id="nameInputs">
-                <input type="text" class="name" autofocus placeholder="Enter Player name: "><br>
-                <input type="text" class="name" placeholder="Enter Player name"><br>
+        <h1>Secret Santa Generator</h1>
+        <form id="santaForm" onsubmit="return false;">
+            <div id="participants">
+                <div class="participant">
+                    <input type="text" class="name" placeholder="Name" required>
+                    <input type="email" class="email" placeholder="Email" required>
+                </div>
+                <div class="participant">
+                    <input type="text" class="name" placeholder="Name" required>
+                    <input type="email" class="email" placeholder="Email" required>
+                </div>
             </div>
-        </div>
-
-            <button style="margin-bottom: 20px;" class="add" onclick="addName()">+ Add Name</button>
-            <input type="text" id="moneyLimit" placeholder="Enter Gift Limit(ex: ₹200)" /><br>
-        
-        <div class="two">
-            <button class=sub onclick="generateSecretSanta()">Generate</button>
-            <div id="result" style="margin-top: 8px;"></div>
-        </div>
+            <div class="centered-options">
+                <button type="button" class="add" onclick="addParticipant()">+ Add Participant</button>
+                <br>
+                <input type="text" id="giftLimit" placeholder="Gift Limit (optional)">
+            </div>
+            <button type="button" class="sub" onclick="generateAndSend()">Generate</button>
+        </form>
+        <div id="result"></div>
     </div>            
     
     <script src="script.js"></script>
